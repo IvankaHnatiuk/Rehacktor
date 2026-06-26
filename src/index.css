@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+@import "tailwindcss";
+@theme {
+  --font-roboto: "Roboto", sans-serif; 
+  --font-electrolize: "Electrolize", sans-serif;
+  --font-nav-gray: #d8d8d8;
+}
+@plugin "daisyui";
+
