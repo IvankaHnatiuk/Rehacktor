@@ -8,7 +8,6 @@ export default function Homepage() {
 
     return (
         <>
-        
             <h1 className="font-electrolize text-3xl text-center font-bold">Reactor</h1>
             <GameList>
                 {games.map((game) => {
@@ -17,7 +16,6 @@ export default function Homepage() {
                     )
                 })}
             </GameList>
-
         </>
     )
 }
