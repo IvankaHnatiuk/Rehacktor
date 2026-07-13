@@ -25,7 +25,7 @@ export default function LoginPage(){
     return (
       <main className="h-screen flex justify-center items-center">
         <form
-        className="p-10 bg-nav-gray w-1/2"
+        className="p-10 bg-nav-gray w-1/2 rounded-2xl"
         onSubmit={handleSubmit(onSubmit)}>
             <input
              type="email"
@@ -54,7 +54,7 @@ export default function LoginPage(){
                 </p>
              )}
 
-             <button className="btn btn-neutral p-5">Sing in</button>
+             <button className="btn btn-neutral p-5 rounded-2xl">Sing in</button>
         </form>
         
       </main>

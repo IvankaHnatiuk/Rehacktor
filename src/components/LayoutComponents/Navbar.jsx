@@ -9,7 +9,7 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 export default function Navbar() {
     const [slug, setSlug] = useState();
 
-    const handleChange = (e)=>{
+    const handleChange = (e) => {
         setSlug(e.target.value);
     };
 
@@ -56,6 +56,9 @@ export default function Navbar() {
                             </>
                           )) || (
                             <>
+                            <li>
+                                <Link to={routes.profile}>Profile</Link>
+                            </li>
                             <li onClick={handleLogout}>
                                 <p>Logout</p>
                             </li>

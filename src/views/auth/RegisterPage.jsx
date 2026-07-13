@@ -17,7 +17,8 @@ export default function RegisterPage(){
     const navigate = useNavigate();
 
     const onSubmit = async (user_data) => {
-        let { data, error } = await supabase.auth.signUp({
+
+         await signUp({
             email: user_data.email,
             password: user_data.password,
             options: {
@@ -25,9 +26,9 @@ export default function RegisterPage(){
                     first_name: user_data.first_name,
                     last_name: user_data.last_name,
                     username: user_data.username
-                },
-            },
-        });
+                }
+            }
+        })
 
         navigate('/');
     };
@@ -35,7 +36,7 @@ export default function RegisterPage(){
     return (
         <main className="h-screen flex justify-center items-center">
 
-            <form className="p-10 bg-nav-gray w-1/2 rounded-3xl " onSubmit={handleSubmit(onSubmit)}>
+            <form className="p-10 bg-nav-gray w-1/2 rounded-2xl " onSubmit={handleSubmit(onSubmit)}>
 
             <input
              type="text"
