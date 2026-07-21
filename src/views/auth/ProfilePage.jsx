@@ -38,7 +38,7 @@ export default function ProfilePage(){
                 </article>
 
                 <section className="grid grid-cols-3 gap-4 px-36">
-                    <article className="bg-black text-nav-gray rounded-box p-10">
+                    <article className="rounded-box border-2 p-10">
                         <h3 className="font-bold">Your data</h3>
                         <p>Name: {profile.first_name} {profile.last_name}</p>
                         <p>Username: {profile.username}</p>
