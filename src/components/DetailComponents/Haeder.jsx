@@ -8,7 +8,7 @@ export default function Header({ game }){
         <h2 className="text-center text-2xl font-electrolize">
             Released on: <span className="font-bold">{game.released}</span>
         </h2>
-        <section className="grad grid-cols-2 gap-4 mt-10">
+        <section className="grid grid-cols-2 gap-4 mt-10">
             <article className="px-10">
                 <p>{game.description_raw}</p>
             </article>
