@@ -23,7 +23,7 @@ export default function ProfileSettingsPage() {
 
     const handleAvatarSubmit = async (e) => {
         e.preventDefault();
-        const flileExt = file.name.split(".").pop();//png
+        const fileExt = file.name.split(".").pop();//png
         const fileName = `${profile.id}${Math.random()}.${fileExt}`;
         await supabase.storage.from("avatars").upload(fileName, file);
         await supabase
@@ -51,7 +51,7 @@ export default function ProfileSettingsPage() {
     return (
         <main className="h-screen flex justify-center items-center">
             <form
-                lassName="p-10 bg-nav-gray w-1/2"
+                className="p-10 bg-nav-gray w-1/2"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <input

@@ -50,8 +50,8 @@ export default function ProfilePage() {
                         </h2>
                     </article>
 
-                    <section className="grid grid-cols-3 gap-4 px-36">
-                        <article className="rounded-box border-2 p-10">
+                    <section className="grid grid-cols-3 gap-4 px-36 ">
+                        <article className="rounded-box border-2 p-10 bg-nav-gray">
                             <h3 className="font-bold">Your data</h3>
                             <p>Name: {profile.first_name} {profile.last_name}</p>
                             <p>Username: {profile.username}</p>
@@ -65,12 +65,12 @@ export default function ProfilePage() {
                         </article>
                     </section>
 
-                    <section className="grid grid-cols-4 gap-4 my-10">
+                    <section className="grid grid-cols-4 gap-4 my-10 ">
                         {userFavourites &&
                             userFavourites.map((game) => {
                                 return (
 
-                                    <div className="card bg-base-100 shadow-sm" key={game.id}>
+                                    <div className="card bg-base-100 shadow-sm bg-nav-gray" key={game.id}>
                                         <div className="card-body">
                                             <h2 className="card-title">{game.game_name}</h2>
                                         </div>
