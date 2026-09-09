@@ -23,15 +23,59 @@ export default function ProfileSettingsPage() {
 
     const handleAvatarSubmit = async (e) => {
         e.preventDefault();
-        const fileExt = file.name.split(".").pop();//png
-        const fileName = `${profile.id}${Math.random()}.${fileExt}`;
-        await supabase.storage.from("avatars").upload(fileName, file);
-        await supabase
+
+        if (!profile) {
+            console.error("Profile not found");
+            return;
+        }
+
+        if (!file) {
+            console.error("No file selected");
+            return;
+        }
+
+        const fileExt = file.name.split(".").pop();
+        const fileName = `${profile.id}-${Math.random()}.${fileExt}`;
+
+        const { error: uploadError } = await supabase.storage
+            .from("avatars")
+            .upload(fileName, file);
+
+        if (uploadError) {
+            console.error("Error uploading avatar:", uploadError);
+            return;
+        }
+
+        const { error: profileError } = await supabase
             .from("profiles")
-            .upsert({id: profile.id, avatar_url: fileName })
-            .select();
+            .upsert({
+                id: profile.id,
+                avatar_url: fileName,
+            });
+
+        if (profileError) {
+            console.error("Error updating profile:", profileError);
+            return;
+        }
+
         await getUser();
-    };
+        navigate(routes.profile);
+
+        console.log("Avatar updated successfully!");
+
+    }
+
+    // const handleAvatarSubmit = async (e) => {
+    //     e.preventDefault();
+    //     const fileExt = file.name.split(".").pop();//png
+    //     const fileName = `${profile.id}${Math.random()}.${fileExt}`;
+    //     await supabase.storage.from("avatars").upload(fileName, file);
+    //     await supabase
+    //         .from("profiles")
+    //         .upsert({id: profile.id, avatar_url: fileName })
+    //         .select();
+    //     await getUser();
+    // };
 
     const { updateProfile } = useContext(UserContext);
 
@@ -60,9 +104,9 @@ export default function ProfileSettingsPage() {
                     className="input input-lg mb-5 w-full"
                     {...register("first_name", { required: "This field is required" })}
                 />
-                {errors.first_ && (
+                {errors.first_name && (
                     <p role="alert" className="text-red-500 mb-6">
-                        {errors.first_.message}
+                        {errors.first_name.message}
                     </p>
                 )}
 
@@ -74,7 +118,7 @@ export default function ProfileSettingsPage() {
                 />
                 {errors.last_name && (
                     <p role="alert" className="text-red-500 mb-6">
-                        {errors.last_.message}
+                        {errors.last_name.message}
                     </p>
                 )}
 
@@ -84,7 +128,7 @@ export default function ProfileSettingsPage() {
                     className="input input-lg mb-5 w-full"
                     {...register("username", { required: "This field is required" })}
                 />
-                {errors.first_ && (
+                {errors.username && (
                     <p role="alert" className="text-red-500 mb-6">
                         {errors.username.message}
                     </p>
@@ -94,15 +138,15 @@ export default function ProfileSettingsPage() {
 
             </form>
 
-            <form  className="p-10 bg-nav-gray w-1/2" onSubmit={handleAvatarSubmit} >
-            <input
-                type="file"
-                className="file-input file-input-lg w-full mb-5"
-                onChange={handleChange}
-            />
-            <button className="btn btn-neutral p-5">Change Avatar</button>
+            <form className="p-10 bg-nav-gray w-1/2" onSubmit={handleAvatarSubmit} >
+                <input
+                    type="file"
+                    className="file-input file-input-lg w-full mb-5"
+                    onChange={handleChange}
+                />
+                <button className="btn btn-neutral p-5">Change Avatar</button>
             </form>
-            <img src="{preview}" alt="" className="w-50" />
+            <img src={preview} alt="" className="w-50" />
         </main>
     );
 }
