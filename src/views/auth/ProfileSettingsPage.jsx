@@ -65,18 +65,6 @@ export default function ProfileSettingsPage() {
 
     }
 
-    // const handleAvatarSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const fileExt = file.name.split(".").pop();//png
-    //     const fileName = `${profile.id}${Math.random()}.${fileExt}`;
-    //     await supabase.storage.from("avatars").upload(fileName, file);
-    //     await supabase
-    //         .from("profiles")
-    //         .upsert({id: profile.id, avatar_url: fileName })
-    //         .select();
-    //     await getUser();
-    // };
-
     const { updateProfile } = useContext(UserContext);
 
     const {
