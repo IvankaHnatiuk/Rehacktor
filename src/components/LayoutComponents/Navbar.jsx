@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import routes from "../../router/routes";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import { FaArrowRightToBracket } from "react-icons/fa6";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Navbar() {
     const [slug, setSlug] = useState();
@@ -34,12 +34,12 @@ export default function Navbar() {
                     </Link>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
+                            <div className="w-10 rounded-full flex items-center justify-center">
                                {(user && (
                                  <img
                                     alt="Tailwind CSS Navbar component"
                                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                               )) || <FaArrowRightToBracket className="text-3xl"/>}
+                               )) || <FaUserCircle className="text-2xl" />}
                             </div>
                         </div>
                         <ul
